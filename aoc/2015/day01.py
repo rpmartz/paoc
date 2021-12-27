@@ -2,13 +2,14 @@ if __name__ == '__main__':
     with open('data/day01.txt', 'r') as f:
         instructions = f.read()
 
+    values = {
+        '(': 1, ')': -1
+    }
+
     floor = 0
     entered_basement = False
     for index, instruction in enumerate(instructions):
-        if instruction == '(':
-            floor += 1
-        elif instruction == ')':
-            floor -= 1
+        floor += values[instruction]
 
         if not entered_basement and floor < 0:
             entered_basement = True
