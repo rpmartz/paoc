@@ -3,17 +3,17 @@ from collections import namedtuple
 HouseCoordinate = namedtuple('HouseCoordinate', ['x', 'y'])
 
 
-def move(position: HouseCoordinate, instruction: str) -> HouseCoordinate:
-    if instruction == '>':
+def move(position: HouseCoordinate, movement: str) -> HouseCoordinate:
+    if movement == '>':
         new_position = HouseCoordinate(position.x + 1, position.y)
-    elif instruction == '^':
+    elif movement == '^':
         new_position = HouseCoordinate(position.x, position.y + 1)
-    elif instruction == '<':
+    elif movement == '<':
         new_position = HouseCoordinate(position.x - 1, position.y)
-    elif instruction == 'v':
+    elif movement == 'v':
         new_position = HouseCoordinate(position.x, position.y - 1)
     else:
-        raise RuntimeError(f'Unexpected instruction {instruction}')
+        raise RuntimeError(f'Unexpected instruction {movement}')
 
     return new_position
 
