@@ -10,9 +10,9 @@ def get_input():
     return lines
 
 
-def parse_moves(input):
+def parse_moves(inp):
     moves = []
-    for inst in input:
+    for inst in inp:
         components = inst.split(' ')
         moves.append(Move(dir=components[0], steps=int(components[1])))
 
