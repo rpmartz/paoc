@@ -31,21 +31,25 @@ def parse_lines(lines):
 
     return points
 
+def part_1():
+    points = parse_lines(get_input())
 
-points = parse_lines(get_input())
+    num_sides = 6
+    total_area = 0
 
-num_sides = 6
-total_area = 0
+    for point in points:
+        neighbors = get_neighbors(point)
 
-for point in points:
-    neighbors = get_neighbors(point)
+        num_covered_sides = 0
+        for neighbor in neighbors:
+            if neighbor in points:
+                num_covered_sides += 1
 
-    num_covered_sides = 0
-    for neighbor in neighbors:
-        if neighbor in points:
-            num_covered_sides += 1
+        num_uncovered_sides = num_sides - num_covered_sides
+        total_area += num_uncovered_sides
 
-    num_uncovered_sides = num_sides - num_covered_sides
-    total_area += num_uncovered_sides
+    return total_area
 
-print(total_area)
+
+
+print(f'Total area: {part_1()}')
