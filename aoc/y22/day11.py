@@ -34,25 +34,18 @@ def operation(monkey_num, item):
 def test_item(monkey_num, item):
     if monkey_num == 0:
         return item % 5 == 0
-
     elif monkey_num == 1:
         return item % 2 == 0
-
     elif monkey_num == 2:
         return item % 19 == 0
-
     elif monkey_num == 3:
         return item % 7 == 0
-
     elif monkey_num == 4:
         return item % 17 == 0
-
     elif monkey_num == 5:
         return item % 13 == 0
-
     elif monkey_num == 6:
         return item % 3 == 0
-
     elif monkey_num == 7:
         return item % 11 == 0
 
