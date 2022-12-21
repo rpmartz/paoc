@@ -22,5 +22,20 @@ def parse_blueprint(line):
                      int(obsidian_robot_clay_cost), int(geode_robot_ore_cost), int(geode_robot_obsidian_cost))
 
 
-bp = parse_blueprint(sample_input)
-print(bp)
+def run(blueprints, num_minutes):
+    for bp in blueprints:
+        for m in range(num_minutes):
+            print(f'executing min {m} for {bp.num}')
+
+
+def part_one():
+    num_minutes = 24
+    lines = get_input()
+    blueprints = [parse_blueprint(line) for line in lines]
+    run(blueprints, num_minutes)
+
+
+part_one()
+
+# approach: greedy, dynamic programming, or backtracking/search?
+# optimizing for num geodes

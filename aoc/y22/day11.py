@@ -59,3 +59,25 @@ monkeys = [
     Monkey([61, 54, 94, 71, 74, 68, 98, 83], 2, 7, 0),  # 6
     Monkey([90, 56], 3, 5, 0)  # 7
 ]
+
+
+def run(num_rounds):
+    for _ in range(num_rounds):
+        for i, m in enumerate(monkeys):
+            for item in m.items:
+                if test_item(i, item):
+                    monkeys[m.truthy_dest].items.append(item)
+                else:
+                    monkeys[m.falsey_dest].items.append(item)
+
+                m.num_inspected += 1
+
+            m.items = []
+
+    inspection_counts = [m.num_inspected for m in monkeys]
+    inspection_counts.sort()
+    print(f'counts: {inspection_counts}')
+    print(f'answer: {inspection_counts[-1] * inspection_counts[-2]}')
+
+
+run(20)
