@@ -28,7 +28,7 @@ def operation(monkey_num, item):
     elif monkey_num == 7:
         intermediate_result = item * item
 
-    return intermediate_result // 3
+    return intermediate_result % (5 * 2 * 19 * 7 * 17 * 13 * 3 * 11)
 
 
 def test_item(monkey_num, item):
@@ -81,4 +81,4 @@ def run(num_rounds):
     print(f'answer: {inspection_counts[-1] * inspection_counts[-2]}')
 
 
-run(20)
+run(10000)
