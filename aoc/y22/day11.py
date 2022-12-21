@@ -65,10 +65,11 @@ def run(num_rounds):
     for _ in range(num_rounds):
         for i, m in enumerate(monkeys):
             for item in m.items:
-                if test_item(i, item):
-                    monkeys[m.truthy_dest].items.append(item)
+                newval = operation(i, item)
+                if test_item(i, newval):
+                    monkeys[m.truthy_dest].items.append(newval)
                 else:
-                    monkeys[m.falsey_dest].items.append(item)
+                    monkeys[m.falsey_dest].items.append(newval)
 
                 m.num_inspected += 1
 
