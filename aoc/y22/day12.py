@@ -64,7 +64,7 @@ def solve(puzzle: Puzzle):
                 visited.add(neighbor)
                 queue.append((neighbor, depth + 1))
 
-    raise Exception('BFS did not reach end')
+    return None
 
 
 def parse_to_grid(lines):
@@ -98,5 +98,20 @@ def part_1():
     return moves
 
 
+def part_2():
+    lines = read_input()
+    puzzle = parse_to_grid(lines)
+    trail_lengths = []
+
+    for location, elevation in puzzle.grid.items():
+        if elevation == 'a':
+            trail_length = solve(Puzzle(start=location, end=puzzle.end, grid=puzzle.grid))
+            if trail_length:
+                trail_lengths.append(trail_length)
+
+    return min(trail_lengths)
+
+
 if __name__ == '__main__':
     print(f'Part 1: {part_1()}')
+    print(f'Part 2: {part_2()}')
