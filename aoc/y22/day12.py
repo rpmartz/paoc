@@ -18,8 +18,55 @@ def read_input():
         return [l.strip() for l in f.readlines()]
 
 
+def get_neighbors(point: Point) -> set[Point]:
+    return {
+        Point(point.x + 1, point.y),
+        Point(point.x - 1, point.y),
+        Point(point.x, point.y + 1),
+        Point(point.x, point.y - 1)
+    }
+
+
 def get_elevation(letter):
-    '#abcdefghijklmnopqrstuvwxyz'.index(letter)
+    if letter == 'S':
+        return 1
+    elif letter == 'E':
+        return 26
+
+    return '#abcdefghijklmnopqrstuvwxyz'.index(letter)
+
+
+def solve(puzzle: Puzzle):
+    # do bfs, where each "level" is a move
+    visited = set()
+    queue = []
+
+    visited.add(puzzle.start)
+    queue.append(puzzle.start)
+    moves = -1  # start at negative 1 so that first move doesn't skew total
+
+    while queue:
+        current_position = queue.pop(0)
+        moves += 1
+        current_elevation = get_elevation(puzzle.grid[current_position])
+
+        # get neighbors that it's possible to move to, i.e. that are the same or less elevation
+        cardinal_neighbors = [n for n in get_neighbors(current_position) if n in puzzle.grid.keys()]
+        eligible_neighbors = set()
+        for n in cardinal_neighbors:
+            n_elevation = get_elevation(puzzle.grid[n])
+            if abs(current_elevation - n_elevation) <= 1:
+                eligible_neighbors.add(n)
+
+        for neighbor in eligible_neighbors:
+            if neighbor not in visited:
+                if neighbor == puzzle.end:
+                    return moves
+
+                visited.add(neighbor)
+                queue.append(neighbor)
+
+    raise Exception('BFS did not reach end')
 
 
 def parse_to_grid(lines):
@@ -29,12 +76,11 @@ def parse_to_grid(lines):
     for i, line in enumerate(lines):
         for j, letter in enumerate(line):
             point = Point(i, j)
+            grid[point] = letter
             if letter == 'S':
                 start = point
             elif letter == 'E':
                 end = point
-            else:
-                grid[point] = letter
 
     assert start != None
     assert end != None
