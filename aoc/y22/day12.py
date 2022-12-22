@@ -42,12 +42,11 @@ def solve(puzzle: Puzzle):
     queue = []
 
     visited.add(puzzle.start)
-    queue.append(puzzle.start)
-    moves = -1  # start at negative 1 so that first move doesn't skew total
+    depth = 0
+    queue.append((puzzle.start, depth))
 
     while queue:
-        current_position = queue.pop(0)
-        moves += 1
+        current_position, depth = queue.pop(0)
         current_elevation = get_elevation(puzzle.grid[current_position])
 
         # get neighbors that it's possible to move to, i.e. that are the same or less elevation
@@ -61,10 +60,10 @@ def solve(puzzle: Puzzle):
         for neighbor in eligible_neighbors:
             if neighbor not in visited:
                 if neighbor == puzzle.end:
-                    return moves
+                    return depth + 1
 
                 visited.add(neighbor)
-                queue.append(neighbor)
+                queue.append((neighbor, depth + 1))
 
     raise Exception('BFS did not reach end')
 
