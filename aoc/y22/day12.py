@@ -42,14 +42,13 @@ def solve(puzzle: Puzzle):
     queue = []
 
     visited.add(puzzle.start)
-    depth = 0
-    queue.append((puzzle.start, depth))
+    start_depth = 0
+    queue.append((puzzle.start, start_depth))
 
     while queue:
         current_position, depth = queue.pop(0)
         current_elevation = get_elevation(puzzle.grid[current_position])
 
-        # get neighbors that it's possible to move to, i.e. that are the same or less elevation
         cardinal_neighbors = [n for n in get_neighbors(current_position) if n in puzzle.grid.keys()]
         eligible_neighbors = set()
         for n in cardinal_neighbors:
@@ -78,13 +77,26 @@ def parse_to_grid(lines):
             grid[point] = letter
             if letter == 'S':
                 start = point
+                grid[point] = 'a'
             elif letter == 'E':
                 end = point
+                grid[point] = 'z'
+            else:
+                grid[point] = letter
 
     assert start != None
     assert end != None
 
     return Puzzle(start=start, end=end, grid=grid)
 
-# print(read_input())
-# print(parse_to_grid(read_input()))
+
+def part_1():
+    lines = read_input()
+    puzzle = parse_to_grid(lines)
+    moves = solve(puzzle)
+
+    return moves
+
+
+if __name__ == '__main__':
+    print(f'Part 1: {part_1()}')
