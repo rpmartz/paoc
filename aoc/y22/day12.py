@@ -53,7 +53,7 @@ def solve(puzzle: Puzzle):
         eligible_neighbors = set()
         for n in cardinal_neighbors:
             n_elevation = get_elevation(puzzle.grid[n])
-            if abs(current_elevation - n_elevation) <= 1:
+            if n_elevation < current_elevation or abs(current_elevation - n_elevation) <= 1:
                 eligible_neighbors.add(n)
 
         for neighbor in eligible_neighbors:
