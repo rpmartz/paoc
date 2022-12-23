@@ -8,3 +8,15 @@ class TestDay13(TestCase):
         self.assertTrue(compare_packet(4, 5) < 0)
         self.assertTrue(compare_packet(5, 4) > 0)
         self.assertEqual(0, compare_packet(5, 5))
+
+    def test_comparing_list_and_number(self):
+        self.assertEqual(0, compare_packet([4], 4))
+        self.assertTrue(compare_packet([4], 5) < 0)
+        self.assertTrue(compare_packet(5, [4]) > 0)
+
+    def test_comparing_lists(self):
+        self.assertTrue(compare_packet([9], [[8, 7, 6]]) > 0)
+        self.assertTrue(compare_packet([[4, 4], 4, 4], [[4, 4], 4, 4, 4]) < 0)
+        self.assertTrue(compare_packet([7, 7, 7, 7], [7, 7, 7]) > 0)
+        self.assertTrue(compare_packet([], [3]) < 0)
+        self.assertTrue(compare_packet([[[]]], [[]]) > 0)
