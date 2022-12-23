@@ -20,3 +20,4 @@ class TestDay13(TestCase):
         self.assertTrue(compare_packet([7, 7, 7, 7], [7, 7, 7]) > 0)
         self.assertTrue(compare_packet([], [3]) < 0)
         self.assertTrue(compare_packet([[[]]], [[]]) > 0)
+        self.assertTrue(compare_packet([1, [2, [3, [4, [5, 6, 7]]]], 8, 9], [1, [2, [3, [4, [5, 6, 0]]]], 8, 9]) > 0)
