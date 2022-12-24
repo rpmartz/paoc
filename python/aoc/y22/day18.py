@@ -1,4 +1,4 @@
-from aoc.common.geometry import Point3D
+from python.aoc.common.geometry import Point3D
 
 cubic_neighbor_directions = [(0, 0, 1), (0, 0, -1),
                              (0, 1, 0), (0, -1, 0),
