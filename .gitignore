@@ -2,7 +2,7 @@
 .idea/
 *.iml
 .env/
-
+__pycache__/
 
 # clojure and leiningen
 /target
