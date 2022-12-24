@@ -1,7 +1,7 @@
 import copy
 import unittest
 
-from day_11 import *
+from python.aoc.y21.day_11 import *
 
 
 def get_board():

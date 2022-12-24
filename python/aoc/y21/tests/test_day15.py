@@ -1,7 +1,7 @@
 import unittest
 
-from aocutils import read_numeric_grid, Point
-from day_15 import calculate_min_risk, build_five_x_grid
+from python.aoc.y21.aocutils import read_numeric_grid, Point
+from python.aoc.y21.day_15 import calculate_min_risk, build_five_x_grid
 
 example_input = """\
 1163751742

@@ -1,6 +1,6 @@
 import unittest
 
-from aoc.y21.aocutils import Point, get_neighbors, read_numeric_grid
+from python.aoc.y21.aocutils import Point, get_neighbors, read_numeric_grid
 
 
 class AocUtilsTest(unittest.TestCase):

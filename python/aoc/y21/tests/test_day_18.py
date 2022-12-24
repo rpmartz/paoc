@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from day_18 import calculate_magnitude
+from python.aoc.y21.day_18 import calculate_magnitude
 
 
 class Test(TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from day_16 import *
+from python.aoc.y21.day_16 import *
 
 
 class DaySixteen(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from day_03 import find_co2_scrubber_rating, find_o2_gen_rating
+from python.aoc.y21.day_03 import find_co2_scrubber_rating, find_o2_gen_rating
 
 test_input = [
     '00100',

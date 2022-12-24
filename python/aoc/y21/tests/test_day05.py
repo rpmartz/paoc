@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from day_05 import build_board, part_one, part_two
+from python.aoc.y21.day_05 import build_board, part_one, part_two
 
 
 class Day05Tests(TestCase):

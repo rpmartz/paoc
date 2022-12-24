@@ -1,6 +1,6 @@
 import unittest
 
-from day_07 import find_best_alignment
+from python.aoc.y21.day_07 import find_best_alignment
 
 
 class DaySeven(unittest.TestCase):

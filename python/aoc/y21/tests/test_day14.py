@@ -1,6 +1,6 @@
 import unittest
 
-from day_14 import *
+from python.aoc.y21.day_14 import *
 
 rules = parse_rules("""\
 CH -> B

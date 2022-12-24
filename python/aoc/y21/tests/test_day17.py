@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from day_17 import process_step, build_target_grid, find_max_height_for_initial_velocity
+from python.aoc.y21.day_17 import process_step, build_target_grid, find_max_height_for_initial_velocity
 
 
 class Test(TestCase):

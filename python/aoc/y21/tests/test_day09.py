@@ -1,6 +1,6 @@
 import unittest
 
-from day_09 import *
+from python.aoc.y21.day_09 import *
 
 board = [
     [2, 1, 9, 9, 9, 4, 3, 2, 1, 0],

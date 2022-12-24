@@ -1,6 +1,6 @@
 import unittest
 
-from day_06 import process_day
+from python.aoc.y21.day_06 import process_day
 
 
 class Day06Test(unittest.TestCase):
