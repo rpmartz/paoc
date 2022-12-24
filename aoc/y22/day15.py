@@ -27,28 +27,45 @@ def part_one():
     pairs = parse_lines(lines)
 
     covered_locations = set()
-    min_x = 10000000
+    min_x = 0
     max_x = -10000000
+
+    radii = {}
+
     for pair in pairs:
         sensor = pair[0]
         beacon = pair[1]
 
         distance_to_closest_beacon = manhattan_distance(sensor, beacon)
+        radii[sensor] = distance_to_closest_beacon
 
-        for x in range(sensor.x - distance_to_closest_beacon, sensor.x + distance_to_closest_beacon):
+        min_x = min([min_x, sensor.x - distance_to_closest_beacon])
+        max_x = max([max_x, sensor.x + distance_to_closest_beacon])
 
-            max_x = max(max_x, x)
-            min_x = min(min_x, x)
+    num_checked = 0
+    for x in range(min_x, max_x + 1):
 
-            for y in range(sensor.y - distance_to_closest_beacon, sensor.y + distance_to_closest_beacon):
-                pt = Point(x, y)
-                dist_to_beacon = manhattan_distance(sensor, pt)
-                if dist_to_beacon <= distance_to_closest_beacon:
-                    covered_locations.add(Point(x, y))
+        pt = Point(x, 2000000)
+        num_checked += 1
 
+        for pair in pairs:
+            sensor = pair[0]
+            dist_to_sensor = manhattan_distance(sensor, pt)
+
+            if dist_to_sensor <= radii[sensor]:
+                covered_locations.add(pt)
+                break
+
+    print(f'x range: {min_x} to {max_x}')
     # need min x and max x to determine length of row
     print(f'num covered locations: {len(covered_locations)}')
-
+    print(f'num checked: {num_checked}')
+    print(f'answer: {num_checked - len(covered_locations)}')
+    # 334399 too low
+    # 334400 too low
+    # 334402 too low
+    # 1642660 not correct
+    # 1642657 not correct
 
 if __name__ == '__main__':
     part_one()
