@@ -19,3 +19,7 @@ pom.xml.asc
 .hgignore
 .hg/
 
+# Calva hidden directories
+.clj-kondo/
+.lsp/
+.calva/
