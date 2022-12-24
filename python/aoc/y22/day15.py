@@ -1,5 +1,5 @@
-from aoc.common.geometry import Point, manhattan_distance
-from aoc.common.parsing import ints
+from python.aoc.common.geometry import Point, manhattan_distance
+from python.aoc.common.parsing import ints
 
 
 def get_input():

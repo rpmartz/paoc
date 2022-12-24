@@ -1,6 +1,6 @@
 import unittest
 
-from aoc.y22.day12 import parse_to_grid, get_elevation, Point, solve
+from python.aoc.y22.day12 import parse_to_grid, get_elevation, Point, solve
 
 
 class Day12Test(unittest.TestCase):

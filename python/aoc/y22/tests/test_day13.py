@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from aoc.y22.day13 import compare_packet
+from python.aoc.y22.day13 import compare_packet
 
 
 class TestDay13(TestCase):

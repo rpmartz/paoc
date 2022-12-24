@@ -1,6 +1,6 @@
 import unittest
 
-from aoc.y22.day19 import parse_blueprint
+from python.aoc.y22.day19 import parse_blueprint
 
 
 class Day19(unittest.TestCase):
