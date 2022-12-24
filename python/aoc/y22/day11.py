@@ -49,6 +49,7 @@ def test_item(monkey_num, item):
     elif monkey_num == 7:
         return item % 11 == 0
 
+
 monkeys = [
     Monkey([98, 89, 52], 6, 1, 0),  # 0
     Monkey([57, 95, 80, 92, 57, 78], 2, 6, 0),  # 1

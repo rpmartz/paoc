@@ -67,5 +67,6 @@ def part_one():
     # 1642660 not correct
     # 1642657 not correct
 
+
 if __name__ == '__main__':
     part_one()

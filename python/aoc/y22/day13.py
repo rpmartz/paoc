@@ -2,10 +2,13 @@ import ast
 from collections import namedtuple
 
 Packet = namedtuple('Packet', 'left, right')
+
+
 def get_input():
     with open('data/day13.txt', 'r') as f:
         lines = f.read()
     return lines
+
 
 def parse_input(lines):
     groups = lines.split('\n\n')
@@ -33,6 +36,7 @@ def compare_packet(left, right):
 
         return compare_packet(len(left), len(right))
 
+
 def part_one():
     lines = get_input()
     packets = parse_input(lines)
@@ -42,6 +46,7 @@ def part_one():
             correct_packet_indicies.append(idx + 1)
 
     return sum(correct_packet_indicies)
+
 
 if __name__ == '__main__':
     print(f'part 1: {part_one()}')
