@@ -13,8 +13,10 @@
         (str/starts-with? line "toggle") :toggle))
 
 (defn parse-line [line]
-  (let [action (parse-action line)]
-    (println (str "action: " action))
-    line))
+  (let [action (parse-action line)
+        [sx sy ex ey] (u/ints line)]
+    {:action action
+     :start (mapv parse-long [sx sy])
+     :end (mapv parse-long [ex ey])}))
 
 (map parse-line lines)
