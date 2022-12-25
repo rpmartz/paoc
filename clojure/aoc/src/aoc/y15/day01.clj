@@ -13,9 +13,15 @@
     (println (str "Part 1: " ans))))
 
 (defn part-2 []
-  (let [ans (ffirst (drop-while #(>= (second %) 0) (map-indexed vector (reductions paren-reducer 0 input))))]
+  (let [ans (->> (reductions paren-reducer 0 input)
+                 (map-indexed vector)
+                 (drop-while #(>= (second %) 0))
+                 (ffirst))]
     (println (str "Part 2: " ans))))
 
 (do
   (part-1)
   (part-2))
+
+
+
