@@ -20,5 +20,5 @@
     (println (str "Part 2: " ans))))
 
 (do
-  (part-1)
-  (part-2))
+  (time (part-1))
+  (time (part-2)))
