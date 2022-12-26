@@ -12,11 +12,26 @@
         (str/starts-with? line "turn off") :off
         (str/starts-with? line "toggle") :toggle))
 
+(defn enumerate-points [sx sy ex ey]
+  (u/coordinate-square sx sy ex ey)
+  )
+
 (defn parse-line [line]
   (let [action (parse-action line)
-        [sx sy ex ey] (u/ints line)]
+        [sx sy ex ey] (mapv parse-long (u/ints line))]
     {:action action
-     :start (mapv parse-long [sx sy])
-     :end (mapv parse-long [ex ey])}))
+     :points (u/coordinate-square sx sy ex ey)
+    }))
 
 (map parse-line lines)
+
+(last (u/grid 1000 1000))
+
+(count (enumerate-points 0 0 1000 0))
+(u/coordinate-square 0 0 1000 0)
+first
+
+; 499,499 through 500,500
+; should be four squares (499, 499), (499, 500)
+(u/coordinate-square 499 499 (inc 500) (inc 500))
+(u/coordinate-square 0 0 (inc 999) (inc 0))
