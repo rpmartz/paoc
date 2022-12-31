@@ -9,5 +9,8 @@
   (slurp (str "../../inputs/" filename))
   )
 
+(defn parse-ints [s]
+  (re-seq #"-?[0-9]+" s))
+
 
 
