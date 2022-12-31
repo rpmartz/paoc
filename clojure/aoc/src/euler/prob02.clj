@@ -8,3 +8,10 @@
 
 
 (reduce + (filter even? (take-while #(< % 4000000) (map fib (range)))))
+
+; example using threadlast
+(->> (range)
+     (map fib)
+     (take-while #(< % 4000000))
+     (filter even?)
+     (reduce +))
