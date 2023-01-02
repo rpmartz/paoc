@@ -13,3 +13,12 @@
   (assert (number? num))
   [(int (Math/floor (/ num 2)))
    (int (Math/ceil (/ num 2)))])
+
+(defn magnitude
+  "The magnitude of a pair is 3 times the magnitude of its left element plus 2 times the magnitude of its right element. The magnitude of a regular number is just that number."
+  [snailfish-num]
+  (cond
+    (number? snailfish-num) snailfish-num
+    :else (+ 
+           (* 3 (magnitude (first snailfish-num))) 
+           (* 2 (magnitude (second snailfish-num))))))
