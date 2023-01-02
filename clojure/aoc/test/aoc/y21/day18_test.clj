@@ -24,4 +24,12 @@
 
   (testing "Magnitude of a list and a number"
     (is (= 89 (magnitude [[9 1] 1])))
-    (is (= 45 (magnitude [1 [1 9]])))))
+    (is (= 45 (magnitude [1 [1 9]]))))
+
+  (testing "Problem example calculations"
+    (is (= 143 (magnitude  [[1 2] [[3 4] 5]])))
+    (is (= 1384 (magnitude [[[[0 7] 4] [[7 8] [6 0]]] [8 1]])))
+    (is (= 445 (magnitude [[[[1 1] [2 2]] [3 3]] [4 4]])))
+    (is (= 791 (magnitude  [[[[3 0] [5 3]] [4 4]] [5 5]])))
+    (is (= 1137 (magnitude  [[[[5 0] [7 4]] [5 5]] [6 6]])))
+    (is (= 3488 (magnitude [[[[8 7] [7 7]] [[8 6] [7 7]]] [[[0 7] [6 6]] [8 7]]])))))
