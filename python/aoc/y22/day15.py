@@ -2,6 +2,16 @@ from python.aoc.common.geometry import Point, manhattan_distance
 from python.aoc.common.parsing import ints
 
 
+class Pair:
+
+    def __init__(self, sensor, beacon):
+        self.sensor = sensor
+        self.beacon = beacon
+
+    def distance(self):
+        return manhattan_distance(self.sensor, self.beacon)
+
+
 def get_input():
     with open('data/day15.txt', 'r') as f:
         lines = [l.strip() for l in f.readlines()]
@@ -17,7 +27,9 @@ def parse_lines(lines):
         sensor = Point(coordinates[0], coordinates[1])
         beacon = Point(coordinates[2], coordinates[3])
 
-        pairs.append((sensor, beacon))
+        pair = Pair(sensor, beacon)
+
+        pairs.append(pair)
 
     return pairs
 
