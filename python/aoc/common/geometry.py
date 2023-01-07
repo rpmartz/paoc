@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 Point3D = namedtuple('Point3D', 'x y z')
 
-@dataclass
+@dataclass(frozen=True, eq=True)
 class Point:
     x: int
     y: int
