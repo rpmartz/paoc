@@ -45,6 +45,17 @@ def part_one():
     lines = get_input()
     pairs = parse_lines(lines)
 
+    pairs_in_range = set()
+
+    for pair in pairs:
+        distance_to_line = pair.sensor.manhattan_distance_to(Point(pair.sensor.x, 200000))
+
+        if distance_to_line <= pair.range:
+            pairs_in_range.add(pair)
+            print(f'Sensor at {pair.sensor} is able to reach line')
+        else:
+            print(f'Sensor at {pair.sensor} NOT in range of line')
+
 
 
 
