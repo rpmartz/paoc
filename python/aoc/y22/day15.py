@@ -9,6 +9,16 @@ class Pair:
     range: int
 
 
+class Pair:
+
+    def __init__(self, sensor, beacon):
+        self.sensor = sensor
+        self.beacon = beacon
+
+    def distance(self):
+        return manhattan_distance(self.sensor, self.beacon)
+
+
 def get_input():
     with open('data/day15.txt', 'r') as f:
         lines = [l.strip() for l in f.readlines()]
