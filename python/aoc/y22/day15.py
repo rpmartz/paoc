@@ -1,5 +1,22 @@
 from python.aoc.common.geometry import Point, manhattan_distance
 from python.aoc.common.parsing import ints
+from dataclasses import dataclass
+
+@dataclass
+class Pair:
+    sensor: Point
+    beacon: Point
+    range: int
+
+
+class Pair:
+
+    def __init__(self, sensor, beacon):
+        self.sensor = sensor
+        self.beacon = beacon
+
+    def distance(self):
+        return manhattan_distance(self.sensor, self.beacon)
 
 
 def get_input():
@@ -17,7 +34,9 @@ def parse_lines(lines):
         sensor = Point(coordinates[0], coordinates[1])
         beacon = Point(coordinates[2], coordinates[3])
 
-        pairs.append((sensor, beacon))
+        coverage_range = sensor.manhattan_distance_to(beacon)
+
+        pairs.append(Pair(sensor, beacon, coverage_range))
 
     return pairs
 
@@ -26,47 +45,25 @@ def part_one():
     lines = get_input()
     pairs = parse_lines(lines)
 
-    covered_locations = set()
-    min_x = 0
-    max_x = -10000000
-
-    radii = {}
+    pairs_in_range = set()
 
     for pair in pairs:
-        sensor = pair[0]
-        beacon = pair[1]
+        distance_to_line = pair.sensor.manhattan_distance_to(Point(pair.sensor.x, 200000))
 
-        distance_to_closest_beacon = manhattan_distance(sensor, beacon)
-        radii[sensor] = distance_to_closest_beacon
+        if distance_to_line <= pair.range:
+            pairs_in_range.add(pair)
+            print(f'Sensor at {pair.sensor} is able to reach line')
+        else:
+            print(f'Sensor at {pair.sensor} NOT in range of line')
 
-        min_x = min([min_x, sensor.x - distance_to_closest_beacon])
-        max_x = max([max_x, sensor.x + distance_to_closest_beacon])
 
-    num_checked = 0
-    for x in range(min_x, max_x + 1):
-
-        pt = Point(x, 2000000)
-        num_checked += 1
-
-        for pair in pairs:
-            sensor = pair[0]
-            dist_to_sensor = manhattan_distance(sensor, pt)
-
-            if dist_to_sensor <= radii[sensor]:
-                covered_locations.add(pt)
-                break
-
-    print(f'x range: {min_x} to {max_x}')
-    # need min x and max x to determine length of row
-    print(f'num covered locations: {len(covered_locations)}')
-    print(f'num checked: {num_checked}')
-    print(f'answer: {num_checked - len(covered_locations)}')
-    # 334399 too low
-    # 334400 too low
-    # 334402 too low
-    # 1642660 not correct
-    # 1642657 not correct
 
 
 if __name__ == '__main__':
     part_one()
+
+ # 334399 too low
+# 334400 too low
+# 334402 too low
+# 1642660 not correct
+# 1642657 not correct
