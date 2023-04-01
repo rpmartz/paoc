@@ -23,5 +23,16 @@
 (defn parse-ints [s]
   (re-seq #"-?[0-9]+" s))
 
+(defn manhattan-distance
+  "Calculates the Manhattan distance between two points.
+   Expects points in [x y] format"
+  [p1 p2]
+  (let [x1 (first p1)
+        y1 (second p1)
+        x2 (first p2)
+        y2 (second p2)]
+    (+ (abs (- x1 x2)) (abs (- y1 y2)))))
+
+
 
 
