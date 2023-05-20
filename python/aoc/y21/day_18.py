@@ -9,10 +9,11 @@ def add(left, right):
     return [left, right]
 
 
-def reduce():
-    # if any pair is nested inside 4 pairs, leftmost pair explodes
-    # if any regular number is 10 or greater, leftmost regular pair splits
-    # do this until done (recursion?)
+def reduce(num):
+    # if any pair is nested inside four pairs, the leftmost such pair explodes.
+
+    # If any regular number is 10 or greater, the leftmost such regular number splits.
+
     pass
 
 
@@ -23,6 +24,7 @@ def explode(pair):
     # add pair's left value to first regular number to left of exploding pair
     # add pair's right value to first regular number to right of exploding pair
     #
+
     pass
 
 def split(i):
@@ -35,3 +37,4 @@ def magnitude(snailfish_num):
 
 if __name__ == '__main__':
     snailfish_num_list = read_input()
+    reduce(eval('[[[[[9,8],1],2],3],4]'))
