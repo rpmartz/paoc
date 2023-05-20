@@ -1,3 +1,10 @@
+import os
+
+def read_input():
+    with open('data/day18.txt', 'r') as f:
+        lines = f.readlines()
+        return [eval(line.strip()) for line in lines]
+
 def add(left, right):
     # form a pair from the left and right snailfish parameters
     pass
@@ -18,8 +25,4 @@ def explode():
 
 
 if __name__ == '__main__':
-    with open('data/day18.txt', 'r') as f:
-        lines = f.readlines()
-
-    for line in lines:
-        print(line.strip())
+    print(read_input())
