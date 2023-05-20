@@ -16,12 +16,19 @@ def reduce():
     pass
 
 
-def explode():
+def explode(pair):
+    assert len(pair == 2), f'len({pair}) = {len(pair)}. Expected 2'
+    left = pair[0]
+    right = pair[1]
     # add pair's left value to first regular number to left of exploding pair
     # add pair's right value to first regular number to right of exploding pair
     #
     pass
 
+def magnitude(snailfish_num):
+    if isinstance(snailfish_num, int):
+        return snailfish_num
+    return 3 * magnitude(snailfish_num[0]) + 2 * magnitude(snailfish_num[1])
 
 if __name__ == '__main__':
-    print(read_input())
+    magnitude([4, 5])

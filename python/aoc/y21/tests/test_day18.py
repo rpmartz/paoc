@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from python.aoc.y21.day_18 import add
+from python.aoc.y21.day_18 import add, magnitude
 
 
 class TestDay18(TestCase):
@@ -16,17 +16,17 @@ class TestDay18(TestCase):
         expected = eval('[[[[[4,3],4],4],[7,[[8,4],9]]],[1,1]]')
         self.assertEqual(expected, add(left, right))
 
+    def test_magnitude(self):
+        cases = [
+            ('[[1, 2], [[3, 4], 5]]', 143),
+            ('[[[[0, 7], 4], [[7, 8], [6, 0]]], [8, 1]]', 1384),
+            ('[[[[1, 1], [2, 2]], [3, 3]], [4, 4]]', 445),
+            ('[[[[3, 0], [5, 3]], [4, 4]], [5, 5]]', 791),
+            ('[[[[5, 0], [7, 4]], [5, 5]], [6, 6]]', 1137),
+            ('[[[[8, 7], [7, 7]], [[8, 6], [7, 7]]], [[[0, 7], [6, 6]], [8, 7]]]', 3488),
+        ]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        for case in cases:
+            sfish_num = eval(case[0])
+            calculated_magnitude = magnitude(sfish_num)
+            self.assertEqual(case[1], calculated_magnitude)
