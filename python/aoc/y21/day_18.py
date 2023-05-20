@@ -6,8 +6,7 @@ def read_input():
         return [eval(line.strip()) for line in lines]
 
 def add(left, right):
-    # form a pair from the left and right snailfish parameters
-    pass
+    return [left, right]
 
 
 def reduce():
