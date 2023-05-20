@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from python.aoc.y21.day_18 import add, magnitude
+from python.aoc.y21.day_18 import add, magnitude, split
 
 
 class TestDay18(TestCase):
@@ -30,3 +30,10 @@ class TestDay18(TestCase):
             sfish_num = eval(case[0])
             calculated_magnitude = magnitude(sfish_num)
             self.assertEqual(case[1], calculated_magnitude)
+
+    def test_split(self):
+        self.assertEqual([5, 5], split(10))
+        self.assertEqual([5, 6], split(11))
+        self.assertEqual([6, 6], split(12))
+        self.assertEqual([6, 7], split(13))
+

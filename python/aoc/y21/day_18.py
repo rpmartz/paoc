@@ -1,4 +1,4 @@
-import os
+import math
 
 def read_input():
     with open('data/day18.txt', 'r') as f:
@@ -25,10 +25,14 @@ def explode(pair):
     #
     pass
 
+def split(i):
+    return [math.floor(i / 2), math.ceil(i / 2)]
+    pass
+
 def magnitude(snailfish_num):
     if isinstance(snailfish_num, int):
         return snailfish_num
     return 3 * magnitude(snailfish_num[0]) + 2 * magnitude(snailfish_num[1])
 
 if __name__ == '__main__':
-    magnitude([4, 5])
+    snailfish_num_list = read_input()
