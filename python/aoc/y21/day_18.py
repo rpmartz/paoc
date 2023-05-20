@@ -27,7 +27,6 @@ def explode(pair):
 
 def split(i):
     return [math.floor(i / 2), math.ceil(i / 2)]
-    pass
 
 def magnitude(snailfish_num):
     if isinstance(snailfish_num, int):
