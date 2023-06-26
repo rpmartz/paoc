@@ -33,23 +33,18 @@ def points_between_inclusive(start: Tuple, end: Tuple) -> List[Tuple]:
 
     included_points = []
 
-    if is_horizontal:
-        if end[0] > start[0]:
-            step = 1
+    # horizontal segment means `x` coords change, `y` for vertical
+    i = 0 if is_horizontal else 1
+
+    # direction to move
+    step = 1 if end[i] > start[i] else -1
+
+    for coord in range(start[i], end[i] + step, step):
+        if is_horizontal:
+            included_points.append((coord, start[i]))
         else:
-            step = -1
+            included_points.append((start[i], coord))
 
-        for x in range(start[0], end[0] + step, step):
-            included_points.append((x, start[1]))
-
-    else:
-        if end[1] > start[1]:
-            step = 1
-        else:
-            step = -1
-
-        for y in range(start[1], end[1] + step, step):
-            included_points.append((start[0], y))
 
     return included_points
 
