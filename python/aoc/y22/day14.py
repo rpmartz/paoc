@@ -13,5 +13,8 @@ def parse_line(line):
 
 lines = read_input()
 for line in lines:
-    print(parse_line(line))
+    points = list(map(text_to_numeric, parse_line(line)))
+    add_rocks_to_board(points)
+
+print(BOARD)
 

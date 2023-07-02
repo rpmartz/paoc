@@ -16,6 +16,10 @@ class Point:
     def as_tuple(self) -> Tuple:
         return (self.x, self.y)
 
+    def points_between(self, other: 'Point') -> List['Point']:
+        points_between = points_between_inclusive(self.as_tuple(), other.as_tuple())
+        return [Point(t[0], t[1]) for t in points_between]
+
 def manhattan_distance(p1: Union[Point | Tuple], p2: Union[Point | Tuple]):
     return abs(p1.x - p2.x) + abs(p1.y - p2.y)
 
