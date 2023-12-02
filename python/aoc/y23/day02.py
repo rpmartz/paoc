@@ -38,10 +38,13 @@ for line in lines:
         'green': max(greens)
     }
 
-valid_game_numbers = set()
+total = 0
+for game, mins in games.items():
+    reds = max(mins['red'], 1)
+    blues = max(mins['blue'], 1)
+    greens = max(mins['green'], 1)
 
-for game, maxes in games.items():
-    if maxes['red'] <= 12 and maxes['blue'] <= 14 and maxes['green'] <= 13:
-        valid_game_numbers.add(game)
+    power = reds * blues * greens
+    total += power
 
-print(sum(valid_game_numbers))
+print(total)
