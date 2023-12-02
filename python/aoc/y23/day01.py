@@ -24,6 +24,7 @@ if __name__ == "__main__":
 
     nums = []
     for line in lines:
+        # need positive lookahead assertion
         nums_in_line = re.findall(
             r"(?=(\d|one|two|three|four|five|six|seven|eight|nine))", line
         )
