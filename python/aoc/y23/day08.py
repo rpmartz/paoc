@@ -28,7 +28,30 @@ def part_one(node_mappings, instructions):
     print(steps)
 
 
-if __name__ == '__main__':
+def part_two(node_mappings, instructions):
+    a_nodes = {k: k for k in node_mappings.keys() if k.endswith("A")}
+    steps = 0
+    for instr in cycle(instructions):
+
+        steps += 1
+
+        for a_node, current_location in a_nodes.items():
+
+            node = node_mappings[current_location]
+
+            if instr == "L":
+                current_node = node[0]
+            elif instr == "R":
+                current_node = node[1]
+
+            a_nodes[a_node] = current_node
+
+        if all([v.endswith("Z") for v in a_nodes.values()]):
+            print(steps)
+            break
+
+
+if __name__ == "__main__":
 
     lines = read_lines()
     instructions = lines[0]
@@ -40,5 +63,4 @@ if __name__ == '__main__':
         nodes[node] = (left, right)
 
     part_one(nodes, instructions)
-
-
+    part_two(nodes, instructions)
