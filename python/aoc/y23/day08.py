@@ -1,6 +1,7 @@
 from itertools import cycle
 import re
-
+from collections import defaultdict
+from math import lcm
 
 def read_lines():
     with open("data/day08.txt") as f:
@@ -31,6 +32,9 @@ def part_one(node_mappings, instructions):
 def part_two(node_mappings, instructions):
     a_nodes = {k: k for k in node_mappings.keys() if k.endswith("A")}
     steps = 0
+
+    step_counts = defaultdict(int)
+
     for instr in cycle(instructions):
 
         steps += 1
@@ -39,6 +43,9 @@ def part_two(node_mappings, instructions):
 
             node = node_mappings[current_location]
 
+            if current_location.endswith("Z"):
+                continue
+
             if instr == "L":
                 current_node = node[0]
             elif instr == "R":
@@ -46,9 +53,13 @@ def part_two(node_mappings, instructions):
 
             a_nodes[a_node] = current_node
 
+            if current_node.endswith("Z") and a_node not in step_counts.keys():
+                step_counts[a_node] = steps
+
         if all([v.endswith("Z") for v in a_nodes.values()]):
-            print(steps)
             break
+
+    print(lcm(*step_counts.values()))
 
 
 if __name__ == "__main__":
