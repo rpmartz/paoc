@@ -21,8 +21,6 @@ def part_one(node_mappings, instructions):
             current_node = node[0]
         elif instr == "R":
             current_node = node[1]
-        else:
-            raise ValueError(f"Unknown instruction: {instr}")
 
         if current_node == "ZZZ":
             break
