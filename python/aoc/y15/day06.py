@@ -41,12 +41,12 @@ for instruction in instructions:
     action = instruction[0]
     if action == 'on':
         for point in rectangle:
-            board[point] = 1
+            board[point] = board[point] + 1
     elif action == 'off':
         for point in rectangle:
-            board[point] = 0
+            board[point] = max(0, board[point] - 1)
     else:
         for point in rectangle:
-            board[point] = board[point] ^ 1
+            board[point] = board[point] + 2
 
 print(sum([v for v in board.values()]))
