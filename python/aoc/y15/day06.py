@@ -16,4 +16,37 @@ def get_instructions():
 
     return instructions
 
-print(get_instructions())
+def points_in_rectangle(p1, p2):
+    start_x, end_x = min(p1[0], p2[0]), max(p1[0], p2[0])
+    start_y, end_y = min(p1[1], p2[1]), max(p1[1], p2[1])
+
+    return [(x, y) for x in range(start_x, end_x + 1) for y in range(start_y, end_y + 1)]
+
+# todo could this be a defaaultdict?
+def build_board():
+    points = points_in_rectangle((0, 0), (999, 999))
+    board = dict()
+    for point in points:
+        board[point] = 0
+
+    return board
+
+
+instructions = get_instructions()
+board = build_board()
+
+for instruction in instructions:
+    rectangle = points_in_rectangle(instruction[1], instruction[2])
+
+    action = instruction[0]
+    if action == 'on':
+        for point in rectangle:
+            board[point] = 1
+    elif action == 'off':
+        for point in rectangle:
+            board[point] = 0
+    else:
+        for point in rectangle:
+            board[point] = board[point] ^ 1
+
+print(sum([v for v in board.values()]))
