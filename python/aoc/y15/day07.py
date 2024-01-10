@@ -24,24 +24,49 @@ def symbol_table(lines):
     return table
 
 
-def determine_signal(wire_name, table):
-    if wire_name.isnumeric():
-        return int(wire_name)
+def charge(wire, wire_values) -> int:
+    if wire.isnumeric():
+        return int(wire)
 
-    val = table[wire_name]
+    rhs = wire_values[wire]
+    print(f'{wire} -> {rhs}')
 
-    if val.startswith('NOT'):
-        return ~determine_signal(table[val.split(" ")[1]], table)
-    elif ' ' not in val:
-        return determine_signal(val, table)
-    else:
-        lhs, op, rhs = val.split(' ')
-
-        operation = operators[op]
-        return operation(determine_signal(lhs, table), determine_signal(rhs, table))
+    if isinstance(rhs, int):
+        wire_values[wire] = rhs
+        return wire_values[wire]
+    elif ' ' not in rhs:
+        res = charge(rhs, wire_values)
+        wire_values[wire] = res
+        return res
+    elif rhs.startswith('NOT'):
+        res = ~charge(rhs.replace('NOT ', ''), wire_values) & 0xffff
+        wire_values[wire] = res
+        return res
+    elif 'AND' in rhs:
+        l, r = rhs.split(' AND ')
+        res = charge(l, wire_values) & charge(r, wire_values)
+        wire_values[wire] = res
+        return res
+    elif 'OR' in rhs:
+        l, r = rhs.split(' OR ')
+        res = charge(l, wire_values) | charge(r, wire_values)
+        wire_values[wire] = res
+        return res
+    elif 'LSHIFT' in rhs:
+        l, r = rhs.split(' LSHIFT ')
+        res = charge(l, wire_values) << charge(r, wire_values)
+        wire_values[wire] = res
+        return res
+    elif 'RSHIFT' in rhs:
+        l, r = rhs.split(' RSHIFT ')
+        res = charge(l, wire_values) >> charge(r, wire_values)
+        wire_values[wire] = res
+        return res
 
 
 if __name__ == '__main__':
     lines = read_lines()
     stable = symbol_table(lines)
-    print(determine_signal('a', stable))
+
+    res = charge('a', stable)
+    print(res)
