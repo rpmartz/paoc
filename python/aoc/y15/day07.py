@@ -15,9 +15,7 @@ def read_lines():
 def symbol_table(lines):
     table = {}
     for line in lines:
-        print(line)
         lhs, rhs = line.split(' -> ')
-        print(f'\t{rhs} = {lhs}')
         table[rhs] = lhs
 
     return table
