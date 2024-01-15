@@ -42,25 +42,12 @@ def charge(wire, wire_values) -> int:
         res = ~charge(rhs.replace('NOT ', ''), wire_values) & 0xffff
         wire_values[wire] = res
         return res
-    elif 'AND' in rhs:
-        l, r = rhs.split(' AND ')
-        res = charge(l, wire_values) & charge(r, wire_values)
+    else:
+        l, op, r = rhs.split(' ')
+        operation = operators[op]
+        res = operation(charge(l, wire_values), charge(r, wire_values))
         wire_values[wire] = res
-        return res
-    elif 'OR' in rhs:
-        l, r = rhs.split(' OR ')
-        res = charge(l, wire_values) | charge(r, wire_values)
-        wire_values[wire] = res
-        return res
-    elif 'LSHIFT' in rhs:
-        l, r = rhs.split(' LSHIFT ')
-        res = charge(l, wire_values) << charge(r, wire_values)
-        wire_values[wire] = res
-        return res
-    elif 'RSHIFT' in rhs:
-        l, r = rhs.split(' RSHIFT ')
-        res = charge(l, wire_values) >> charge(r, wire_values)
-        wire_values[wire] = res
+
         return res
 
 
