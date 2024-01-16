@@ -44,6 +44,9 @@ if __name__ == "__main__":
     # start randomly at Faerun
     visited.add("Faerun")
 
+    # although this appears to generate a minimum spanning tree,
+    # it is not a solution to this problem because the MST is not
+    # a contiguous path through the graph (i.e. would require backtracking)
     while len(visited) < len(dists.keys()) - 1:
         for dist, src, dest in edges:
             if src not in visited and dest in visited:
