@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-import pprint
+from itertools import permutations
 
 # input is an undirected weighted graph
 def load_graph():
@@ -36,27 +36,19 @@ def load_edges():
 
 if __name__ == "__main__":
     dists = load_graph()
-    edges = sorted(load_edges())
 
-    visited = set()
-    distance_traveled = 0
+    all_paths = permutations(dists.keys())
 
-    # start randomly at Faerun
-    visited.add("Faerun")
+    shortest = 99999999999
+    longest = -99999999999
 
-    # although this appears to generate a minimum spanning tree,
-    # it is not a solution to this problem because the MST is not
-    # a contiguous path through the graph (i.e. would require backtracking)
-    while len(visited) < len(dists.keys()) - 1:
-        for dist, src, dest in edges:
-            if src not in visited and dest in visited:
-                print(f"\tAdding edge {src} - {dest} of cost {dist}")
-                visited.add(src)
-                distance_traveled += dist
-            elif src in visited and dest not in visited:
-                print(f"\tAdding edge {src} - {dest} of cost {dist}")
-                visited.add(dest)
-                distance_traveled += dist
+    for path in all_paths:
+        path_distance = 0
+        for i in range(len(path) - 1):
+            path_distance += dists[path[i]][path[i+1]]
 
-    print(sorted(visited))
-    print(distance_traveled)
+        shortest = min(shortest, path_distance)
+        longest = max(longest, path_distance)
+
+    print(f"Part 1: {shortest}")
+    print(f"Part 2: {longest}")
