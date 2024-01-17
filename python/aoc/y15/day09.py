@@ -44,8 +44,8 @@ if __name__ == "__main__":
 
     for path in all_paths:
         path_distance = 0
-        for i in range(len(path) - 1):
-            path_distance += dists[path[i]][path[i+1]]
+        for src, dest in zip(path, path[1:]):
+            path_distance += dists[src][dest]
 
         shortest = min(shortest, path_distance)
         longest = max(longest, path_distance)
