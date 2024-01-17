@@ -5,3 +5,7 @@
 ## ToDos
 
 * Implement efficient algorithm for finding permutations 
+
+## Learnings
+
+* `O(n!)` grows really fast. Assuming 1 million permutations per second, generating permutations for a set of 10 items can be done in a few seconds. 15 items takes 15 days. 17 items would take 11 years.  
