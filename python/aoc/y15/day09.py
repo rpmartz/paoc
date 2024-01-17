@@ -19,21 +19,6 @@ def load_graph():
     return distances
 
 
-def load_edges():
-    with open("data/day09.txt", "r") as ifile:
-        lines = [l.strip() for l in ifile.readlines()]
-
-    edges = []
-
-    for line in lines:
-        result = re.match("(\w+) to (\w+) = (\d+)", line)
-        src, dest, dist = result.groups()
-
-        edges.append((int(dist), src, dest))
-
-    return edges
-
-
 if __name__ == "__main__":
     dists = load_graph()
 
