@@ -26,6 +26,9 @@ def increment_password(pw):
     while index > -1:
         if pw != orig and meets_requirement(pw):
             return pw
+        # todo this is wrong and needs to wrap back over depending on preceding letter,
+        # i.e. bcz -> bda, bdb, bdc ...
+        # bzz -> caa
         elif pw[index] == 'z':
             index -= 1
         else:
