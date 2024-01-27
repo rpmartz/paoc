@@ -1,0 +1,3 @@
+
+def alphabet():
+    return 'abcdefghijklmnopqrstuvwxyz'
