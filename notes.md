@@ -1,7 +1,8 @@
 ## Questions
 
 * 2015.07: Why does `& 0xffff` turn a regular Python `int` into a 16-bit integer?
-* Understand `itertools.groupby` better 
+* Understand `itertools.groupby` better
+* 2015.11: does `any` or `all` short circuit if `True` or `False` is found, respectively?
 
 ## ToDos
 
