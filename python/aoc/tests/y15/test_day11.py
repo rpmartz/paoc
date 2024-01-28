@@ -12,3 +12,7 @@ class Y15Day11Test(unittest.TestCase):
         self.assertTrue(meets_requirement('abcdffaa'))
         self.assertTrue(meets_requirement('ghjaabcc'))
 
+    def test_increment_password(self):
+        self.assertEqual('abcdffaa', increment_password('abcdefgh'))
+        self.assertEqual('abcdffaa', increment_password('ghijklmn'))
+
