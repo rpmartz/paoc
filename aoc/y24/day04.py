@@ -15,34 +15,36 @@ def read_puzzle():
 
     return puzzle_grid, puzzle_depth, puzzle_width
 
+def generate_offsets(i, j):
+    directions = [
+        # horizontal right
+        [(0, 0), (0, 1), (0, 2), (0, 3)],
+        # horizontal left
+        [(0, 0), (0, -1), (0, -2), (0, -3)],
+        # vertical down
+        [(0, 0), (1, 0), (2, 0), (3, 0)],
+        # vertical up
+        [(0, 0), (-1, 0), (-2, 0), (-3, 0)],
+        # diagonal upward right
+        [(0, 0), (1, -1), (2, -2), (3, -3)],
+        # diagonal downward right
+        [(0, 0), (1, 1), (2, 2), (3, 3)],
+        # diagonal upward left
+        [(0, 0), (-1, -1), (-2, -2), (-3, -3)],
+        # diagonal downward left
+        [(0, 0), (-1, 1), (-2, 2), (-3, 3)],
+    ]
+
+    offset_coords = []
+    for direction in directions:
+        offset_coords.append([(i + di, j + dj) for di, dj in direction])
+    return offset_coords
+
+
 
 def search_grid(i, j, grid) -> int:
-    offset_coords = []
+    offset_coords = generate_offsets(i, j)
     num_ways_to_spell = 0
-
-    # forwards same line
-    offset_coords.append([(i, j), (i, j + 1), (i, j + 2), (i, j + 3)])
-
-    # backwards same line
-    offset_coords.append([(i, j), (i, j - 1), (i, j - 2), (i, j - 3)])
-
-    # vertical downwards
-    offset_coords.append([(i, j), (i + 1, j), (i + 2, j), (i + 3, j)])
-
-    # vertical upwards
-    offset_coords.append([(i, j), (i - 1, j), (i - 2, j), (i - 3, j)])
-
-    # diagonal upwards right
-    offset_coords.append([(i, j), (i + 1, j - 1), (i + 2, j - 2), (i + 3, j - 3)])
-
-    # diagonal downward right
-    offset_coords.append([(i, j), (i + 1, j + 1), (i + 2, j + 2), (i + 3, j + 3)])
-
-    # diagonal upward left
-    offset_coords.append([(i, j), (i - 1, j - 1), (i - 2, j - 2), (i - 3, j - 3)])
-
-    # diagonal downward left
-    offset_coords.append([(i, j), (i - 1, j + 1), (i - 2, j + 2), (i - 3, j + 3)])
 
     for group in offset_coords:
         chars = []
