@@ -62,8 +62,8 @@ def search_grid(i, j, grid) -> int:
 grid, depth, width = read_puzzle()
 
 total_appearances = 0
-for i in range(depth):
-    for j in range(width):
+for i in range(depth + 1):
+    for j in range(width + 1):
         total_appearances += search_grid(i, j, grid)
 
 print(total_appearances)
