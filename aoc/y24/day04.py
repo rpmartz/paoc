@@ -57,13 +57,38 @@ def search_grid(i, j, grid) -> int:
 
     return num_ways_to_spell
 
+def search_grid_x_mas(i, j, grid) -> int:
+
+    if grid[(i,j)] != 'A':
+        return 0
+
+    left_diag_offsets = [(-1, -1), (0, 0), (1, 1)]
+    right_diag_offsets = [(1, -1), (0, 0), (-1, 1)]
+
+    left_diag_chars = []
+    for di, dj in left_diag_offsets:
+        left_diag_chars.append(grid.get((i + di, j + dj), '#'))
+
+    right_diag_chars = []
+    for di, dj in right_diag_offsets:
+        right_diag_chars.append(grid.get((i + di, j + dj), '#'))
+
+    if ''.join(left_diag_chars) in {'MAS', 'SAM'} and ''.join(right_diag_chars) in {'MAS', 'SAM'}:
+        return 1
+
+
+    return 0
+
 
 
 grid, depth, width = read_puzzle()
 
 total_appearances = 0
+xmas_appearances = 0
 for i in range(depth + 1):
     for j in range(width + 1):
         total_appearances += search_grid(i, j, grid)
+        xmas_appearances += search_grid_x_mas(i, j, grid)
 
 print(total_appearances)
+print(xmas_appearances)
