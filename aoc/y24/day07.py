@@ -10,6 +10,7 @@ def potential_values(i, nums, memo = {}):
         for potential_value in memo[i - 1]:
             potential_values.append(nums[i] + potential_value)
             potential_values.append(nums[i] * potential_value)
+            potential_values.append(int(str(nums[i])  +  str(potential_value)))
 
         memo[i] = potential_values
 
