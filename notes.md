@@ -8,6 +8,9 @@
 
 * Implement efficient algorithm for finding permutations 
 
+## Lookups
+
+* `itertools.cominations` vs. `itertools.permutations`. Differences and a basic way to find each
 
 ## Learnings
 
