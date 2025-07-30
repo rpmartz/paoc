@@ -1,3 +1,4 @@
+from itertools import combinations
 
 def parse_grid() -> dict:
     with open('data/day08.txt') as f:
@@ -22,8 +23,12 @@ def is_on_board(p):
 grid = parse_grid()
 antinodes = set()
 
-for antenna, matching_nodes in grid.items():
-    print(f'{antenna}: {matching_nodes}')
+# now we have a data structure that groups the location of each antenna by frequency
+for frequency, antenna_coordinates in grid.items():
+    # we need all of the combinations of antennas for this frequency
+    _combinations = combinations(antenna_coordinates, 2)
+    for a, b in _combinations:
+        print(f'{frequency} -> {a} -> {b}')
 
 
 # print(len(antinodes))
