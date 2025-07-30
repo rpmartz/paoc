@@ -85,9 +85,9 @@ for antenna, value in grid.items():
     for match in matches:
         anode_1, anode_2 = extend_diagonal(match, antenna)
         if is_on_board(anode_1):
-            antinodes.add(antenna)
+            antinodes.add(anode_1)
         if is_on_board(anode_2):
-            antinodes.add(antenna)
+            antinodes.add(anode_2)
 
 
 print(len(antinodes))
