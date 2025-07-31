@@ -43,7 +43,7 @@ for frequency, antenna_coordinates in frequency_locations.items():
     _combinations = combinations(antenna_coordinates, 2)
     for a, b in _combinations:
         man_dist = abs(a[0] - b[0]) + abs(a[1] - b[1])
-        # antinodes only if one is 2x distance, 2a - b and 2b - a
+        # antinodes only if one is 2x distance, so at 2a - b and 2b - a
         anode_1 = sub_pt(mul_pt(a, 2), b)
         anode_2 = sub_pt(mul_pt(b, 2), a)
 
